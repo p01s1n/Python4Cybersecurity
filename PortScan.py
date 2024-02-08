@@ -2,7 +2,7 @@ import ipaddress
 from scapy.layers.dns import *
 from scapy.layers.inet import *
 
-ports = [25,80,53,443,445,8080,8443]
+ports = [22,25,80,110,53,443,445,8080,8443]
 
 def SynScan(host):
     ans,unans = sr(
@@ -21,7 +21,7 @@ def SynScan(host):
             print(r[TCP].dport)
     print("Closed ports at %s:" % host)
     for (r) in unans:
-        if r[TCP].flags=="R":
+        if r[TCP].flags=="SR":
             print(r[TCP].dport)
 
 def DNSScan(host):
