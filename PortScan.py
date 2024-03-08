@@ -37,7 +37,7 @@ def AckScan(host):
     print("Unfiltered ports at %s:" % host)
     for (s,r) in ans:
         if s[TCP].dport == r[TCP].sport and r[TCP].flags=="RA":
-            print(r[TCP].dport)
+            print(s[TCP].dport)
     print()
 
 def XmasScan(host):
@@ -52,7 +52,7 @@ def XmasScan(host):
     print("Closed ports at %s:" % host)
     for (s,r) in ans:
         if s[TCP].dport==r[TCP].sport and r[TCP].flags=="":
-            print(r[TCP].dport)
+            print(s[TCP].dport)
     print()
 
 def DNSScan(host):
@@ -63,7 +63,7 @@ def DNSScan(host):
         DNS(rd=1,qd=DNSQR(qname="google.com"))
         ,timeout=2,verbose=0)
     if ans and ans[UDP]:
-        print("DNS Server at %s"%host)
+        print("DNS Server at %s:" % host)
     print()
     
 host = input("Enter IP Address: ")
